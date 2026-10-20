@@ -4,9 +4,6 @@ using UnityEngine.UI;
 
 public class DialoguePanel : MonoBehaviour
 {
-    [Header ("Image")]
-    public Image characterImage;
-
     [Header ("Name")]
     public string characterName;
     public TextMeshProUGUI nameText;
@@ -14,6 +11,11 @@ public class DialoguePanel : MonoBehaviour
     [Header ("Dialogue")]
     public string characterDialogue;
     public TextMeshProUGUI dialogueText;
+
+    private void Start()
+    {
+        //gameObject.SetActive(false);
+    }
 
     public void ChangeName(string newName)
     {
@@ -24,9 +26,5 @@ public class DialoguePanel : MonoBehaviour
     {
         characterDialogue = newDialogue;
         dialogueText.text = characterDialogue;
-    }
-    public void ChangeImage(Image newImage)
-    {
-        characterImage = newImage;
     }
 }
