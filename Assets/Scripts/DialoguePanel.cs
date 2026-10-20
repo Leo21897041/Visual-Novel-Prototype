@@ -1,16 +1,32 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialoguePanel : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [Header ("Image")]
+    public Image characterImage;
 
-    // Update is called once per frame
-    void Update()
+    [Header ("Name")]
+    public string characterName;
+    public TextMeshProUGUI nameText;
+
+    [Header ("Dialogue")]
+    public string characterDialogue;
+    public TextMeshProUGUI dialogueText;
+
+    public void ChangeName(string newName)
     {
-        
+        characterName = newName;
+        nameText.text = characterName;
+    }
+    public void ChangeDialogue(string newDialogue)
+    {
+        characterDialogue = newDialogue;
+        dialogueText.text = characterDialogue;
+    }
+    public void ChangeImage(Image newImage)
+    {
+        characterImage = newImage;
     }
 }
