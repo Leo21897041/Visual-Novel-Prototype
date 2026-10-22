@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -31,6 +32,11 @@ public class DialogueManager : MonoBehaviour
     public GameObject deadScreen;
 
     public GameObject nextDayScene;
+    public GameObject nextButton;
+
+    public GameObject happy;
+    public GameObject concerned;
+    public GameObject angry;
     
     public void StartGame()
     {
@@ -42,6 +48,7 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.ChangeName(characterNames[0]);
         dialoguePanel.ChangeDialogue(dialogueLines[currentIndex]);
     }
+
     public void NextLine()
     {
         currentIndex++;
@@ -77,10 +84,12 @@ public class DialogueManager : MonoBehaviour
                 yesNoPanelObj3.SetActive(true);
                 dialoguePanelObj.SetActive(false);
             }
-            else if (dialogueLines[currentIndex] == "Do you want to go for a supplu run?")
+            else if (dialogueLines[currentIndex] == "Do you want to go for a supply run?")
             {
                 yesNoPanelObj4.SetActive(true);
                 dialoguePanel.ChangeDialogue(dialogueLines[currentIndex]);
+                
+                nextButton.SetActive(false);
             }
 
             else
@@ -90,15 +99,38 @@ public class DialogueManager : MonoBehaviour
         }
         if (dialogue4 == true)
         {
-            if (dialogueLines[currentIndex] == "Do you want to go for a supplu run?")
+            if (dialogueLines[currentIndex] == "Do you want to go for a supply run?")
             {
                 yesNoPanelObj4.SetActive(true);
                 dialoguePanel.ChangeDialogue(dialogueLines[currentIndex]);
+
+                nextButton.SetActive(false);
             }
             else
             {
                 dialoguePanel.ChangeDialogue(dialogueLines[currentIndex]);
             }
+        }
+
+        if (dialogueLines[currentIndex] == "Sara: Im hungry.")
+        {
+            concerned.SetActive(true);
+        }
+        if (dialogueLines[currentIndex] == "But you need to get more food.")
+        {
+            happy.SetActive(false);
+        }
+        if (dialogueLines[currentIndex] == "Sara gets Big Bro.")
+        {
+            concerned.SetActive(false);
+        }
+        if (dialogueLines[currentIndex] == "Big Bro: Give Us Your Food!")
+        {
+            angry.SetActive(true);
+        }
+        if (dialogueLines[currentIndex] == "You need to get more.")
+        {
+            angry.SetActive(false);
         }
     }
 
@@ -168,7 +200,7 @@ public class DialogueManager : MonoBehaviour
 
     public void GoForSupplyRun()
     {
-
+        SceneManager.LoadScene(1);
     }
     public void NextDay()
     {

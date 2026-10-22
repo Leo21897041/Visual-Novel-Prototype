@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,9 +9,17 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isGrounded;
 
+    public Spawner spawner;
+
+    [Header("Canvas UI")]
+    public TextMeshProUGUI startText;
+    public GameObject endingPanel;
+
     private void Start()
     {
+        spawner = FindFirstObjectByType<Spawner>();
         rb = GetComponent<Rigidbody2D>();
+        endingPanel.SetActive(false);
     }
     void Update()
     {
@@ -27,5 +36,17 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
         }
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            GetComponent<CircleCollider2D>().enabled = false;
+            endingPanel.SetActive(true);
+        }
+    }
+
+    public void StartButton()
+    {
+        startText.enabled = false;
+
+        spawner.SpawnObstacle();
     }
 }
