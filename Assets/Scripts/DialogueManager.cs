@@ -11,7 +11,6 @@ public class DialogueManager : MonoBehaviour
     public List<string> dialogueLinesN1 = new List<string>();
 
     public List<string> dialogueLinesY2 = new List<string>();
-    public List<string> dialogueLinesN2 = new List<string>();
 
     public int currentIndex;
 
@@ -21,13 +20,17 @@ public class DialogueManager : MonoBehaviour
     public GameObject yesNoPanelObj1;
     public GameObject yesNoPanelObj2;
     public GameObject yesNoPanelObj3;
+    public GameObject yesNoPanelObj4;
 
 
     public bool dialogue1;
     public bool dialogue2;
     public bool dialogue3;
+    public bool dialogue4;
 
     public GameObject deadScreen;
+
+    public GameObject nextDayScene;
     
     public void StartGame()
     {
@@ -74,6 +77,24 @@ public class DialogueManager : MonoBehaviour
                 yesNoPanelObj3.SetActive(true);
                 dialoguePanelObj.SetActive(false);
             }
+            else if (dialogueLines[currentIndex] == "Do you want to go for a supplu run?")
+            {
+                yesNoPanelObj4.SetActive(true);
+                dialoguePanel.ChangeDialogue(dialogueLines[currentIndex]);
+            }
+
+            else
+            {
+                dialoguePanel.ChangeDialogue(dialogueLines[currentIndex]);
+            }
+        }
+        if (dialogue4 == true)
+        {
+            if (dialogueLines[currentIndex] == "Do you want to go for a supplu run?")
+            {
+                yesNoPanelObj4.SetActive(true);
+                dialoguePanel.ChangeDialogue(dialogueLines[currentIndex]);
+            }
             else
             {
                 dialoguePanel.ChangeDialogue(dialogueLines[currentIndex]);
@@ -95,6 +116,14 @@ public class DialogueManager : MonoBehaviour
         {
             dialogue2 = false;
             dialogue3 = true;
+
+            dialoguePanel.ChangeName(characterNames[0]);
+            dialoguePanel.ChangeDialogue(dialogueLines[currentIndex]);
+        }
+        else if (dialogue3 == true)
+        {
+            dialogue3 = false;
+            dialogue4 = true;
 
             dialoguePanel.ChangeName(characterNames[0]);
             dialoguePanel.ChangeDialogue(dialogueLines[currentIndex]);
@@ -135,5 +164,14 @@ public class DialogueManager : MonoBehaviour
     public void No3()
     {
         deadScreen.SetActive(true);
+    }
+
+    public void GoForSupplyRun()
+    {
+
+    }
+    public void NextDay()
+    {
+        nextDayScene.SetActive(true);
     }
 }
